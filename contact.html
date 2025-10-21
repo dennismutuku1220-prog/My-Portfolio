@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - Dennis Mutuku</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="nav">
+        <div class="nav-brand">
+            <h2>Dennis Mutuku</h2>
+        </div>
+        <div class="nav-links">
+            <a href="home.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="portfolio.html">Portfolio</a>
+            <a href="contact.html" class="active">Contact</a>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <section class="contact-hero">
+            <div class="container">
+                <h1>Get In Touch</h1>
+                <p class="subtitle">I'd love to hear from you. Let's connect and discuss opportunities.</p>
+            </div>
+        </section>
+
+        <section class="contact-content">
+            <div class="container">
+                <div class="contact-grid">
+                    <div class="contact-info">
+                        <h2>Contact Information</h2>
+                        <div class="contact-item">
+                            <h3>Email</h3>
+                            <p>dennismutuku1220@gmail.com</p>
+                        </div>
+                        <div class="contact-item">
+                            <h3>Phone</h3>
+                            <p>+254 79408 5014</p>
+                        </div>
+                        <div class="contact-item">
+                            <h3>Location</h3>
+                            <p>Makueni County, Kenya</p>
+                        </div>
+                        <div class="contact-item">
+                            <h3>Office</h3>
+                            <p>Makueni County Government Offices</p>
+                        </div>
+                        
+                        <div class="social-links">
+                            <h3>Connect With Me</h3>
+                            <div class="social-icons">
+                                <a href="#" class="social-link">LinkedIn</a>
+                                <a href="#" class="social-link">Twitter</a>
+                                <a href="#" class="social-link">Facebook</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="contact-form">
+                        <h2>Send Me a Message</h2>
+                        <form class="form">
+                            <div class="form-group">
+                                <label for="name">Full Name</label>
+                                <input type="text" id="name" name="name" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="email">Email Address</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="phone">Phone Number</label>
+                                <input type="tel" id="phone" name="phone">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="subject">Subject</label>
+                                <select id="subject" name="subject" required>
+                                    <option value="">Select a subject</option>
+                                    <option value="general">General Inquiry</option>
+                                    <option value="collaboration">Collaboration</option>
+                                    <option value="opportunity">Job Opportunity</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="message">Message</label>
+                                <textarea id="message" name="message" rows="5" required placeholder="Tell me about your inquiry..."></textarea>
+                            </div>
+                            
+                            <button type="submit" class="btn btn-primary">Send Message</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="availability-section">
+            <div class="container">
+                <h2>Availability</h2>
+                <div class="availability-grid">
+                    <div class="availability-item">
+                        <h3>Office Hours</h3>
+                        <p>Monday - Friday: 8:00 AM - 5:00 PM</p>
+                        <p>Saturday: 9:00 AM - 1:00 PM</p>
+                        <p>Sunday: Closed</p>
+                    </div>
+                    <div class="availability-item">
+                        <h3>Response Time</h3>
+                        <p>I typically respond to emails within 24-48 hours during business days.</p>
+                    </div>
+                    <div class="availability-item">
+                        <h3>Meeting Requests</h3>
+                        <p>For in-person meetings, please contact me in advance to schedule an appointment.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="map-section">
+            <div class="container">
+                <h2>Location</h2>
+                <div class="map-placeholder">
+                    <p>📍 Makueni Government Offices</p>
+                    <p>Makueni County, Kenya.</p>
+                    
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2025 Dennis Mutuku Munyao. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="home.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="portfolio.html">Portfolio</a>
+                <a href="contact.html">Contact</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Contact Form JavaScript
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.querySelector('.form');
+            const submitBtn = document.querySelector('.btn-primary');
+            
+            // Form submission handler
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Get form data
+                const formData = new FormData(form);
+                const name = formData.get('name');
+                const email = formData.get('email');
+                const phone = formData.get('phone');
+                const subject = formData.get('subject');
+                const message = formData.get('message');
+                
+                // Validate form
+                if (!name || !email || !subject || !message) {
+                    showMessage('Please fill in all required fields.', 'error');
+                    return;
+                }
+                
+                // Email validation
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(email)) {
+                    showMessage('Please enter a valid email address.', 'error');
+                    return;
+                }
+                
+                // Show loading state
+                submitBtn.textContent = 'Sending...';
+                submitBtn.disabled = true;
+                
+                // Create mailto link with form data
+                const mailtoLink = createMailtoLink(name, email, phone, subject, message);
+                
+                // Open email client
+                window.location.href = mailtoLink;
+                
+                // Reset form after a delay
+                setTimeout(() => {
+                    form.reset();
+                    submitBtn.textContent = 'Send Message';
+                    submitBtn.disabled = false;
+                    showMessage('Thank you! Your email client should open with the message pre-filled. Please send it to complete your inquiry.', 'success');
+                }, 2000);
+            });
+            
+            // Create mailto link function
+            function createMailtoLink(name, email, phone, subject, message) {
+                const recipient = 'dennismutuku1220@gmail.com';
+                const emailSubject = `Portfolio Contact: ${subject}`;
+                const emailBody = `Name: ${name}\nEmail: ${email}\nPhone: ${phone}\n\nMessage:\n${message}\n\n---\nSent from Dennis Mutuku Portfolio Website`;
+                
+                return `mailto:${recipient}?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
+            }
+            
+            // Show message function
+            function showMessage(text, type) {
+                // Remove existing message
+                const existingMessage = document.querySelector('.form-message');
+                if (existingMessage) {
+                    existingMessage.remove();
+                }
+                
+                // Create new message
+                const message = document.createElement('div');
+                message.className = `form-message form-message-${type}`;
+                message.textContent = text;
+                
+                // Insert message after form
+                form.parentNode.insertBefore(message, form.nextSibling);
+                
+                // Remove message after 5 seconds
+                setTimeout(() => {
+                    if (message.parentNode) {
+                        message.remove();
+                    }
+                }, 5000);
+            }
+            
+            // Phone click handler
+            const phoneElement = document.querySelector('.contact-item:nth-child(2) p');
+            if (phoneElement) {
+                phoneElement.style.cursor = 'pointer';
+                phoneElement.addEventListener('click', function() {
+                    window.location.href = 'tel:+254794085014';
+                });
+            }
+            
+            // Email click handler
+            const emailElement = document.querySelector('.contact-item:nth-child(1) p');
+            if (emailElement) {
+                emailElement.style.cursor = 'pointer';
+                emailElement.addEventListener('click', function() {
+                    window.location.href = 'mailto:dennismutuku1220@gmail.com';
+                });
+            }
+        });
+    </script>
+
+    <style>
+        .form-message {
+            padding: 1rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+            font-weight: 600;
+            animation: slideIn 0.3s ease;
+        }
+        
+        .form-message-success {
+            background: rgba(74, 158, 255, 0.2);
+            color: #4a9eff;
+            border: 1px solid #4a9eff;
+        }
+        
+        .form-message-error {
+            background: rgba(255, 99, 99, 0.2);
+            color: #ff6363;
+            border: 1px solid #ff6363;
+        }
+        
+        .contact-item p {
+            transition: color 0.3s ease;
+        }
+        
+        .contact-item p:hover {
+            color: #4a9eff;
+        }
+        
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</body>
+</html>
